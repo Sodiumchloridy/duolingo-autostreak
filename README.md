@@ -66,17 +66,3 @@ Environment variables can be customized in [.github/workflows/autostreak.yml](.g
 | `DUOLINGO_JWT` | *Required* | Your Duolingo authentication JWT. |
 | `RANDOM_DELAY` | `300` | Max randomized wait time in seconds before running (0–5 mins in Actions, `0` locally). |
 | `LESSONS` | `1` | Number of practice sessions completed per run. |
-
----
-
-## Local Development
-
-Requirements: Node.js 20+
-
-```bash
-# 1. Create a .env file with your token
-echo DUOLINGO_JWT="your_jwt_token_here" > .env
-
-# 2. Run the script
-npm start
-```
