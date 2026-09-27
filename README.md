@@ -14,7 +14,7 @@ A lightweight, zero-dependency Node.js script that automatically keeps your Duol
 |---|---|
 | **1. Retrieve Token**<br>Extract `jwt_token` using the browser console | <img width="540" alt="cookie script" src="https://github.com/user-attachments/assets/b2dcfc12-22df-4053-a83c-3f6ee0447f2f" /> |
 | **2. Save Secret**<br>Add `DUOLINGO_JWT` to [GitHub Secrets](https://github.com/Sodiumchloridy/duolingo-autostreak/settings/secrets/actions/new) | <img width="540" alt="env-secret setting" src="https://github.com/user-attachments/assets/022fa2c4-1b44-4e72-9fdb-6256367ac0cf" /> |
-| **3. Go on fire**<br>Automated daily practice keeps your streak active (0 ➔ 1 🔥) | <img width="480" alt="streak success" src="https://github.com/user-attachments/assets/a58cb8ac-493d-4411-b40e-e900307a04d4" /> |
+| **3. Start your Streak Spree**<br>Automated daily practice keeps your streak active (0 ➔ 1 🔥) | <img width="480" alt="streak success" src="https://github.com/user-attachments/assets/a58cb8ac-493d-4411-b40e-e900307a04d4" /> |
 
 ---
 
