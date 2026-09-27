@@ -1,37 +1,61 @@
-# duolingo-autostreak
-A dockerized node.js script to automatically keep your streak on Duolingo alive.
+# Duolingo Autostreak
 
-Shoutout to rfoel for writing the script: https://github.com/rfoel/duolingo/. He also explained how to easily get the JWT token.
+A lightweight, zero-dependency Node.js script that automatically keeps your Duolingo streak alive using GitHub Actions.
 
-Create a .env file and insert your token like:
+## Features
 
-```bash
-DUOLINGO_JWT="your.JWT.token"
-LESSONS=1
-```
+- **GitHub Actions ready**: Runs on a daily schedule with manual trigger (`workflow_dispatch`) support.
+- **Anti-detection random delay**: Supports configurable random delay (`RANDOM_DELAY`) to avoid triggering streak actions at the exact same minute every day.
 
-Notice the ">> /var/log/cron.log" in the cron job. That's to save the node.js console logs log file to review them later in case something doesn't work. The log file is cleared once a week.
+---
 
-If you use gotify (https://gotify.net/), you can uncomment the third line in the cron file and adjust the domain and token to get the last line of your logs messaged to you. That will usually include the timestamp of your latest correct answer, so you can easily see if it is still up-to-date.
+## Setup with GitHub Actions
 
-To build the docker image:
+### 1. Retrieve your Duolingo JWT Token
 
-```bash
-docker build -t duolingo_streak .
-```
+1. Log into [duolingo.com](https://www.duolingo.com) in your browser.
+2. Open Developer Tools (`F12` or right-click -> **Inspect**).
+3. Navigate to **Application** (Chrome/Edge) or **Storage** (Firefox) -> **Cookies** -> `https://www.duolingo.com`.
+4. Copy the value of the `jwt_token` cookie.
 
-And to run the container:
+### 2. Configure GitHub Secrets
 
-```bash
-docker run -d --name=duolingo_streak --restart=unless-stopped duolingo_streak
-```
+1. Go to your repository on GitHub.
+2. Navigate to **Settings** > **Secrets and variables** > **Actions**.
+3. Click **New repository secret**.
+4. Set Name to `DUOLINGO_JWT` and paste your JWT token into Value.
 
-In case you want to see the logs:
+### 3. Verify / Run
 
-```bash
-docker exec -it duolingo_streak bash
-```
+1. Go to the **Actions** tab in your repository.
+2. Select **Duolingo Autostreak** on the left.
+3. Click **Run workflow** to test it immediately.
 
-The logs are in /var/log/cron.log. You could also create a volume of course.
+By default, the workflow runs daily at `04:00 UTC`. You can modify the cron schedule in [.github/workflows/autostreak.yml](.github/workflows/autostreak.yml).
 
-Obviously you don't have to use docker. In that case, just copy the contents of "cron" into your crontab file and adjust the paths to the .sh scripts according to where you place the files.
+---
+
+## Configuration
+
+You can configure these environment variables in [.github/workflows/autostreak.yml](.github/workflows/autostreak.yml) or in a local `.env` file:
+
+| Variable | Default | Description |
+|---|---|---|
+| `DUOLINGO_JWT` | *Required* | Your Duolingo JWT authentication token. |
+| `RANDOM_DELAY` | `0` (or `1800` in GH Actions) | Max random delay in seconds before starting (e.g. `1800` waits between 0 and 30 mins). |
+| `LESSONS` | `1` | Number of practice sessions to complete per run. |
+
+---
+
+## Local Development
+
+Requirements: Node.js 20+
+
+1. Create a `.env` file:
+   ```bash
+   DUOLINGO_JWT="your_jwt_token_here"
+   ```
+2. Run the script:
+   ```bash
+   npm start
+   ```

@@ -1,0 +1,26 @@
+name: Duolingo Autostreak
+
+on:
+  schedule:
+    # Runs daily at 04:00 UTC (adjust to your preferred time)
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  streak:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run Autostreak
+        env:
+          DUOLINGO_JWT: ${{ secrets.DUOLINGO_JWT }}
+          LESSONS: 1
+          RANDOM_DELAY: 1800 # Random delay up to 30 minutes (in seconds)
+        run: npm start
