@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="Duolingo Autostreak Banner" width="100%" />
+</p>
+
 # Duolingo Autostreak
 
 A lightweight, zero-dependency Node.js script that automatically keeps your Duolingo streak alive using GitHub Actions.
