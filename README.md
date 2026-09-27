@@ -4,6 +4,8 @@ A lightweight, zero-dependency Node.js script that automatically keeps your Duol
 
 ## Features
 
+- **Zero dependencies**: Uses Node.js native `fetch` and built-in `.env` loader.
+- **YAGNI & Minimal**: No Docker, no external cron daemons, no unnecessary packages.
 - **GitHub Actions ready**: Runs on a daily schedule with manual trigger (`workflow_dispatch`) support.
 - **Anti-detection random delay**: Supports configurable random delay (`RANDOM_DELAY`) to avoid triggering streak actions at the exact same minute every day.
 
@@ -14,20 +16,24 @@ A lightweight, zero-dependency Node.js script that automatically keeps your Duol
 ### 1. Retrieve your Duolingo JWT Token
 
 1. Log into [duolingo.com](https://www.duolingo.com) in your browser.
-2. Open Developer Tools (`F12` or right-click -> **Inspect**).
-3. Navigate to **Application** (Chrome/Edge) or **Storage** (Firefox) -> **Cookies** -> `https://www.duolingo.com`.
-4. Copy the value of the `jwt_token` cookie.
+2. Open Developer Tools (`F12` or right-click -> **Inspect**) and go to the **Console** tab.
+3. Paste and run the following command to copy the token directly to your clipboard:
+   ```javascript
+   copy(document.cookie.match(/jwt_token=([^;]+)/)?.[1]);
+   ```
+   *(If your browser console blocks pasting, type `allow pasting` and press Enter first).*
 
-### 2. Configure GitHub Secrets
+   *Alternatively, you can manually locate and copy the `jwt_token` cookie under **Application** (Chrome/Edge) or **Storage** (Firefox) -> **Cookies** -> `https://www.duolingo.com`.*
 
-1. Go to your repository on GitHub.
-2. Navigate to **Settings** > **Secrets and variables** > **Actions**.
-3. Click **New repository secret**.
-4. Set Name to `DUOLINGO_JWT` and paste your JWT token into Value.
+### 2. Configure GitHub Secret
+
+1. Go directly to [New Repository Secret](https://github.com/Sodiumchloridy/duolingo-autostreak/settings/secrets/actions/new).
+2. Set **Name** to `DUOLINGO_JWT`.
+3. Paste your token into **Secret** and click **Add secret**.
 
 ### 3. Verify / Run
 
-1. Go to the **Actions** tab in your repository.
+1. Go to the [Actions](https://github.com/Sodiumchloridy/duolingo-autostreak/actions) tab in your repository.
 2. Select **Duolingo Autostreak** on the left.
 3. Click **Run workflow** to test it immediately.
 
