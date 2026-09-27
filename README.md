@@ -4,8 +4,6 @@ A lightweight, zero-dependency Node.js script that automatically keeps your Duol
 
 ## Features
 
-- **Zero dependencies**: Uses Node.js native `fetch` and built-in `.env` loader.
-- **YAGNI & Minimal**: No Docker, no external cron daemons, no unnecessary packages.
 - **GitHub Actions ready**: Runs on a daily schedule with manual trigger (`workflow_dispatch`) support.
 - **Anti-detection random delay**: Supports configurable random delay (`RANDOM_DELAY`) to avoid triggering streak actions at the exact same minute every day.
 
