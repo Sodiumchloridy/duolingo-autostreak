@@ -4,6 +4,8 @@ A lightweight, zero-dependency Node.js script that automatically keeps your Duol
 
 ## Features
 
+- **Zero dependencies**: Uses Node.js native `fetch` and built-in `.env` loader.
+- **YAGNI & Minimal**: No Docker, no external cron daemons, no unnecessary packages.
 - **GitHub Actions ready**: Runs on a daily schedule with manual trigger (`workflow_dispatch`) support.
 - **Anti-detection random delay**: Supports configurable random delay (`RANDOM_DELAY`) to avoid triggering streak actions at the exact same minute every day.
 
@@ -11,9 +13,11 @@ A lightweight, zero-dependency Node.js script that automatically keeps your Duol
 
 ## Setup with GitHub Actions
 
-| 1. Retrieve JWT from Browser Console | 2. Add `DUOLINGO_JWT` to GitHub Secrets | 3. Streak Maintained (0 ➔ 1 🔥) |
-| :---: | :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/b2dcfc12-22df-4053-a83c-3f6ee0447f2f" alt="cookie script" /> | <img src="https://github.com/user-attachments/assets/022fa2c4-1b44-4e72-9fdb-6256367ac0cf" alt="env-secret setting" /> | <img src="https://github.com/user-attachments/assets/a58cb8ac-493d-4411-b40e-e900307a04d4" alt="streak success" /> |
+| Step | Preview |
+|---|---|
+| **1. Retrieve JWT from Browser Console**<br>Run script on `duolingo.com` to extract and copy token | <img width="600" alt="cookie script" src="https://github.com/user-attachments/assets/b2dcfc12-22df-4053-a83c-3f6ee0447f2f" /> |
+| **2. Add `DUOLINGO_JWT` to GitHub Secrets**<br>Save under [Repository Secrets](https://github.com/Sodiumchloridy/duolingo-autostreak/settings/secrets/actions/new) | <img width="600" alt="env-secret setting" src="https://github.com/user-attachments/assets/022fa2c4-1b44-4e72-9fdb-6256367ac0cf" /> |
+| **3. Streak Maintained (0 ➔ 1 🔥)**<br>Automated daily streak check-in succeeds | <img width="500" alt="streak success" src="https://github.com/user-attachments/assets/a58cb8ac-493d-4411-b40e-e900307a04d4" /> |
 
 ### 1. Retrieve your Duolingo JWT Token
 
@@ -38,10 +42,6 @@ A lightweight, zero-dependency Node.js script that automatically keeps your Duol
 1. Go to the [Actions](https://github.com/Sodiumchloridy/duolingo-autostreak/actions) tab in your repository.
 2. Select **Duolingo Autostreak** on the left.
 3. Click **Run workflow** to test it immediately.
-
-Your streak will be updated on Duolingo upon completion:
-
-<img width="560" height="118" alt="streak success" src="https://github.com/user-attachments/assets/a58cb8ac-493d-4411-b40e-e900307a04d4" />
 
 By default, the workflow runs daily at `04:00 UTC`. You can modify the cron schedule in [.github/workflows/autostreak.yml](.github/workflows/autostreak.yml).
 
