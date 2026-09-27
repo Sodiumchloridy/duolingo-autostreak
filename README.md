@@ -13,13 +13,17 @@ A lightweight, zero-dependency Node.js script that automatically keeps your Duol
 
 ## Setup with GitHub Actions
 
+| 1. Retrieve JWT from Browser Console | 2. Add `DUOLINGO_JWT` to GitHub Secrets | 3. Streak Maintained (0 ➔ 1 🔥) |
+| :---: | :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/b2dcfc12-22df-4053-a83c-3f6ee0447f2f" alt="cookie script" /> | <img src="https://github.com/user-attachments/assets/022fa2c4-1b44-4e72-9fdb-6256367ac0cf" alt="env-secret setting" /> | <img src="https://github.com/user-attachments/assets/a58cb8ac-493d-4411-b40e-e900307a04d4" alt="streak success" /> |
+
 ### 1. Retrieve your Duolingo JWT Token
 
 1. Log into [duolingo.com](https://www.duolingo.com) in your browser.
-2. Open Developer Tools (`F12` or right-click -> **Inspect**) and go to the **Console** tab.
+2. Open Developer Tools (`F12` or right-click -> **Inspect**) and switch to the **Console** tab.
 3. Paste and run the following command to copy the token directly to your clipboard:
    ```javascript
-   copy(document.cookie.match(/jwt_token=([^;]+)/)?.[1]);
+   ((t) => t ? (copy(t), "✅ Copied to clipboard!") : "⚠️ jwt_token not found")(document.cookie.match(/jwt_token=([^;]+)/)?.[1]);
    ```
    *(If your browser console blocks pasting, type `allow pasting` and press Enter first).*
 
@@ -37,6 +41,10 @@ A lightweight, zero-dependency Node.js script that automatically keeps your Duol
 2. Select **Duolingo Autostreak** on the left.
 3. Click **Run workflow** to test it immediately.
 
+Your streak will be updated on Duolingo upon completion:
+
+<img width="560" height="118" alt="streak success" src="https://github.com/user-attachments/assets/a58cb8ac-493d-4411-b40e-e900307a04d4" />
+
 By default, the workflow runs daily at `04:00 UTC`. You can modify the cron schedule in [.github/workflows/autostreak.yml](.github/workflows/autostreak.yml).
 
 ---
@@ -48,7 +56,7 @@ You can configure these environment variables in [.github/workflows/autostreak.y
 | Variable | Default | Description |
 |---|---|---|
 | `DUOLINGO_JWT` | *Required* | Your Duolingo JWT authentication token. |
-| `RANDOM_DELAY` | `0` (or `1800` in GH Actions) | Max random delay in seconds before starting (e.g. `1800` waits between 0 and 30 mins). |
+| `RANDOM_DELAY` | `0` (or `300` in GH Actions) | Max random delay in seconds before starting (e.g. `300` waits between 0 and 5 mins). |
 | `LESSONS` | `1` | Number of practice sessions to complete per run. |
 
 ---
