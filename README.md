@@ -3,6 +3,7 @@
 </p>
 
 # Duolingo Autostreak
+![CI/CD Status](https://github.com/Sodiumchloridy/duolingo-autostreak/actions/workflows/autostreak.yml/badge.svg)
 
 A lightweight, zero-dependency Node.js script that automatically keeps your Duolingo streak alive using GitHub Actions.
 
